@@ -73,14 +73,25 @@ pola = {
     ]
 }
 
-def print_pola(pola):
-    for baris in pola:
-        print(baris)
-        
-# Function untuk cetak pola
+font_size = int(input("Masukkan ukuran font (1-10): "))
+
+def scale_pattern(pattern, size):
+    scaled_pattern = []
+    for line in pattern:
+        scaled_line = ""
+        for char in line:
+            if char == '*':
+                scaled_line += '*' * size
+            else:
+                scaled_line += ' ' * size
+        scaled_pattern.extend([scaled_line] * size)
+    return scaled_pattern
+
 for digit in numb:
     if digit in pola:
-        print_pola(pola[digit])
+        scaled_pattern = scale_pattern(pola[digit], font_size)
+        for line in scaled_pattern:
+            print(line)
         print("\n")
     else:
         print(digit, ": Bukan Angka.")
